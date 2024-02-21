@@ -1,0 +1,345 @@
+section {
+  height: 100vh;
+  overflow: hidden;
+
+  // Permet de masquer la div qui contient le titre et le button << lancer le jeu >>
+  .hidden {
+    .text-container {
+      transform: translateY(450px) !important ;
+
+      // Titre << SpinCard >>
+      h2 {
+        opacity: .5 !important;
+        transition: opacity .6s ease .3s !important ;
+      }
+    }
+
+    // Contient la liste des noms des cartes
+    .card-name-container {
+      opacity: 1 !important;
+      transition-delay: .5s !important;
+    }
+  }
+
+  --title-height: 60vh ;
+  .title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: var(--title-height);
+    // border: 1px solid tomato;
+
+    .card-name-container {
+      position: absolute;
+      overflow-y: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      .active {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+      }
+
+      .card-name {
+        transform: translateY(-250px);
+        opacity: 0;
+        transition: transform 1s ease, opacity .7s ease .2s ;
+        position: absolute;
+      }
+    }
+
+    .text-container {
+      width: 100%;
+      transform: translateY(0);
+      transition: transform 1s ease;
+      position: relative ;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      h2 {
+        opacity: 1;
+      }
+    }
+    
+    h2 {
+      width: 100%;
+      text-align: center;
+      font-size: 100px;
+      color: #DDB474;
+    }
+  }
+
+  .table-container-opened {
+    transform: translateY(-50px) !important;
+    
+    .table {
+      transition: transform .5s ease;
+      transform: translateY(-50px) ;
+
+      .card-container {
+        top: 0;
+
+        .card {
+          --card-width: 200px;
+          --card-height: 250px;
+          --distance-x: calc((var(--table-size) / 2));
+          --distance-y: calc((var(--table-size) / 2));
+    
+          width: var(--card-width);
+          height: var(--card-height);
+          display: flex;
+          justify-content: center;
+          position: absolute;
+          transform-origin: center;
+          transform: translate(
+            calc(
+              cos((var(--number-angle))) * var(--distance-x)
+            ),
+            calc(
+              sin((var(--number-angle))) * var(--distance-y)
+            ),
+          )
+          rotate(var(--angle));
+          
+          // Pique Noir
+          &:nth-child(1) {
+            --number-angle: calc(3 * pi / 2) ;
+            --angle: 0;
+          } 
+    
+          // Biscuit
+          &:nth-child(8) {
+            --number-angle: calc(5 * pi / 4) ;
+            --angle: 315deg;
+          } 
+    
+          // Coeur Rouge
+          &:nth-child(2) {
+            --number-angle: calc(7 * pi / 4) ;
+            --angle: 45deg;
+          } 
+    
+          // Coeur Gold
+          &:nth-child(7) {
+            --number-angle: pi ;
+            --angle: 270deg;
+          } 
+    
+          // Trègle Noir
+          &:nth-child(3) {
+            --number-angle: 0 ;
+            --angle: 90deg;
+          } 
+    
+          // Trèfle Gold
+          &:nth-child(6) {
+            --number-angle: calc(3 * pi / 4) ;
+            --angle: 225deg;
+          } 
+    
+          // Pique Gold
+          &:nth-child(4) {
+            --number-angle: calc(pi / 4) ;
+            --angle: 135deg;
+          } 
+    
+          // Biscuit Gold
+          &:nth-child(5) {
+            --number-angle: calc(pi / 2) ;
+            --angle: 0;
+          } 
+    
+        }
+      }
+    }
+
+  }
+
+  .table-container {
+    transform: translateY(0);
+    transition: transform .5s ease;
+    margin-top: 30px;
+    height: 350px;
+
+    .table {
+      --table-size: 700px ;
+
+      transform: translateY(0px);
+      background-color: #5F2F0A;
+      border: 13px solid #DDB474;
+      margin: 0 auto;
+      width: var(--table-size);
+      height: var(--table-size);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    // Cercle à l'interieur de la table des cartes
+    .table-circle {
+      position: absolute;
+      width: calc(var(--table-size) / 2);
+      height: calc(var(--table-size) / 2);
+      border-radius: 50%;
+      border: 20px solid #472308;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // Deuxieme cercle à l'intérieur de la table des cartes
+      div {
+        width: calc(var(--table-size) / 4);
+        height: calc(var(--table-size) / 4);
+        background-color: #DDB474;
+        border-radius: 50%;
+        border: 22px solid #472308;
+      }
+    }
+
+    // Contient la liste des cartes
+    .card-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      transition: all 1s ease;
+      top: calc(
+        var(--table-size) / -2 - (var(--title-height) / 2) - 40px
+      );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    // Gestion des cartes
+    .card {
+      --card-width: 200px;
+      --card-height: 250px;
+      --distance-x: calc((var(--table-size) / 2));
+      --distance-y: calc((var(--table-size) / 2));
+
+      width: var(--card-width);
+      height: var(--card-height);
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      transition: transform 1s ease;
+      transform-origin: bottom;
+      transform: translate(0, 0);
+      
+      // Pique Noir
+      &:nth-child(1) {
+        z-index: 20;
+      } 
+      
+      // Biscuit
+      &:nth-child(2) {
+        z-index: 19;
+        transform: rotate(-5deg);
+      } 
+      
+      // Coeur Rouge
+      &:nth-child(3) {
+        z-index: 18;
+        transform: rotate(5deg);
+      } 
+      
+      // Coeur Gold
+      &:nth-child(4) {
+        z-index: 17;
+        transform: rotate(-10deg);
+      } 
+      
+      // Trègle Noir
+      &:nth-child(5) {
+        z-index: 16;
+        transform: rotate(10deg);
+      } 
+      
+      // Trèfle Gold
+      &:nth-child(6) {
+        z-index: 15;
+        transform: rotate(-15deg);
+      } 
+      
+      // Pique Gold
+      &:nth-child(7) {
+        z-index: 14;
+        transform: rotate(15deg);
+      } 
+      
+      // Biscuit Gold
+      &:nth-child(8) {
+        z-index: 13;
+        transform: rotate(0deg);
+      }
+
+      img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  
+}
+
+.btn-start {
+  opacity: 1;
+  bottom: -80px ;
+}
+
+.btn-stop {
+  opacity: 1;
+  bottom: 30px;
+  right: 30px;
+
+  width: 150px !important;
+  height: 50px !important;
+}
+
+// Style de base d'un button
+.btn {
+  cursor: pointer;
+  position: absolute !important;
+  width: 200px ;
+  height: 60px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1.1);
+  transition: transform 1s ease, opacity 1s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  .legend {
+    position: absolute;
+    display: inline-block;
+    color: #DDB474;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Permet de masquer le button
+.no-visible {
+  opacity: 0;
+}

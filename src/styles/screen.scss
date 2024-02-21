@@ -1,0 +1,25 @@
+.screen {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+
+  svg {
+    width: 150px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+}

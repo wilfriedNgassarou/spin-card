@@ -1,0 +1,345 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Raleway";
+  background-color: #133b26;
+}
+
+.screen {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 992px) {
+  .screen {
+    display: none;
+  }
+}
+.screen svg {
+  width: 150px;
+}
+.screen h2 {
+  font-size: 40px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 83px;
+  align-items: center;
+  padding: 0 3rem;
+}
+header h1 {
+  font-size: 32.67px;
+  color: #DDB474;
+}
+header nav {
+  display: flex;
+  gap: 150px;
+}
+header ul {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+}
+header a {
+  text-decoration: none;
+  color: #DDB474;
+}
+header .btn-header {
+  background-color: #DDB474;
+  color: black;
+  padding: 10px 30px;
+}
+
+section {
+  height: 100vh;
+  overflow: hidden;
+  --title-height: 60vh ;
+}
+section .hidden .text-container {
+  transform: translateY(450px) !important;
+}
+section .hidden .text-container h2 {
+  opacity: 0.5 !important;
+  transition: opacity 0.6s ease 0.3s !important;
+}
+section .hidden .card-name-container {
+  opacity: 1 !important;
+  transition-delay: 0.5s !important;
+}
+section .title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: var(--title-height);
+}
+section .title .card-name-container {
+  position: absolute;
+  overflow-y: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+section .title .card-name-container .active {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+section .title .card-name-container .card-name {
+  transform: translateY(-250px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 0.7s ease 0.2s;
+  position: absolute;
+}
+section .title .text-container {
+  width: 100%;
+  transform: translateY(0);
+  transition: transform 1s ease;
+  position: relative;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section .title .text-container h2 {
+  opacity: 1;
+}
+section .title h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 100px;
+  color: #DDB474;
+}
+section .table-container-opened {
+  transform: translateY(-50px) !important;
+}
+section .table-container-opened .table {
+  transition: transform 0.5s ease;
+  transform: translateY(-50px);
+}
+section .table-container-opened .table .card-container {
+  top: 0;
+}
+section .table-container-opened .table .card-container .card {
+  --card-width: 200px;
+  --card-height: 250px;
+  --distance-x: calc((var(--table-size) / 2));
+  --distance-y: calc((var(--table-size) / 2));
+  width: var(--card-width);
+  height: var(--card-height);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transform-origin: center;
+  transform: translate(calc(cos((var(--number-angle))) * var(--distance-x)), calc(sin((var(--number-angle))) * var(--distance-y))) rotate(var(--angle));
+}
+section .table-container-opened .table .card-container .card:nth-child(1) {
+  --number-angle: calc(3 * pi / 2) ;
+  --angle: 0;
+}
+section .table-container-opened .table .card-container .card:nth-child(8) {
+  --number-angle: calc(5 * pi / 4) ;
+  --angle: 315deg;
+}
+section .table-container-opened .table .card-container .card:nth-child(2) {
+  --number-angle: calc(7 * pi / 4) ;
+  --angle: 45deg;
+}
+section .table-container-opened .table .card-container .card:nth-child(7) {
+  --number-angle: pi ;
+  --angle: 270deg;
+}
+section .table-container-opened .table .card-container .card:nth-child(3) {
+  --number-angle: 0 ;
+  --angle: 90deg;
+}
+section .table-container-opened .table .card-container .card:nth-child(6) {
+  --number-angle: calc(3 * pi / 4) ;
+  --angle: 225deg;
+}
+section .table-container-opened .table .card-container .card:nth-child(4) {
+  --number-angle: calc(pi / 4) ;
+  --angle: 135deg;
+}
+section .table-container-opened .table .card-container .card:nth-child(5) {
+  --number-angle: calc(pi / 2) ;
+  --angle: 0;
+}
+section .table-container {
+  transform: translateY(0);
+  transition: transform 0.5s ease;
+  margin-top: 30px;
+  height: 350px;
+}
+section .table-container .table {
+  --table-size: 700px ;
+  transform: translateY(0px);
+  background-color: #5F2F0A;
+  border: 13px solid #DDB474;
+  margin: 0 auto;
+  width: var(--table-size);
+  height: var(--table-size);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .table-container .table-circle {
+  position: absolute;
+  width: calc(var(--table-size) / 2);
+  height: calc(var(--table-size) / 2);
+  border-radius: 50%;
+  border: 20px solid #472308;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .table-container .table-circle div {
+  width: calc(var(--table-size) / 4);
+  height: calc(var(--table-size) / 4);
+  background-color: #DDB474;
+  border-radius: 50%;
+  border: 22px solid #472308;
+}
+section .table-container .card-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  transition: all 1s ease;
+  top: calc(var(--table-size) / -2 - var(--title-height) / 2 - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .table-container .card {
+  --card-width: 200px;
+  --card-height: 250px;
+  --distance-x: calc((var(--table-size) / 2));
+  --distance-y: calc((var(--table-size) / 2));
+  width: var(--card-width);
+  height: var(--card-height);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transition: transform 1s ease;
+  transform-origin: bottom;
+  transform: translate(0, 0);
+}
+section .table-container .card:nth-child(1) {
+  z-index: 20;
+}
+section .table-container .card:nth-child(2) {
+  z-index: 19;
+  transform: rotate(-5deg);
+}
+section .table-container .card:nth-child(3) {
+  z-index: 18;
+  transform: rotate(5deg);
+}
+section .table-container .card:nth-child(4) {
+  z-index: 17;
+  transform: rotate(-10deg);
+}
+section .table-container .card:nth-child(5) {
+  z-index: 16;
+  transform: rotate(10deg);
+}
+section .table-container .card:nth-child(6) {
+  z-index: 15;
+  transform: rotate(-15deg);
+}
+section .table-container .card:nth-child(7) {
+  z-index: 14;
+  transform: rotate(15deg);
+}
+section .table-container .card:nth-child(8) {
+  z-index: 13;
+  transform: rotate(0deg);
+}
+section .table-container .card img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-start {
+  opacity: 1;
+  bottom: -80px;
+}
+
+.btn-stop {
+  opacity: 1;
+  bottom: 30px;
+  right: 30px;
+  width: 150px !important;
+  height: 50px !important;
+}
+
+.btn {
+  cursor: pointer;
+  position: absolute !important;
+  width: 200px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1.1);
+  transition: transform 1s ease, opacity 1s ease;
+}
+.btn:hover {
+  transform: scale(1.2);
+}
+.btn .legend {
+  position: absolute;
+  display: inline-block;
+  color: #DDB474;
+}
+.btn img {
+  width: 100%;
+  height: 100%;
+}
+
+.no-visible {
+  opacity: 0;
+}
+
+.credit {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.credit div {
+  background-color: #DDB474;
+  width: 250px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: black;
+}
+.credit a {
+  color: blue !important;
+}
+
+/*# sourceMappingURL=index.css.map */
